@@ -1,6 +1,7 @@
 #include "Memory.h"
 #include "exchanger.h"
 
+
 SC_MODULE(multiExchanger)
 {
 	sc_signal_rv<WORD_LENGTH> databusin, databusout;
@@ -8,6 +9,9 @@ SC_MODULE(multiExchanger)
 	sc_signal_resolved cs, rwbar;
 
 	sc_mutex memBusses;
+	
+	sc_semaphore* memrd;
+
 
 	exchanger* EXC1;
 	exchanger* EXC2;
@@ -19,7 +23,9 @@ SC_MODULE(multiExchanger)
 
 	SC_CTOR(multiExchanger)
 	{
-		EXC1 = new exchanger("EXC1_Instance", 235, 3); 
+		memrd = new sc_semaphore(3);
+
+		EXC1 = new exchanger("EXC1_Instance", 235, 3, 10); 
 			EXC1->cs(cs);
 			EXC1->rwbar(rwbar);
 			EXC1->datain(databusin);
@@ -27,7 +33,7 @@ SC_MODULE(multiExchanger)
 			EXC1->addr(addrbus);
 			EXC1->permit=&memBusses;  // Pass mutex reference
 
-		EXC2 = new exchanger("EXC2_Instance", 67, 3);
+		EXC2 = new exchanger("EXC2_Instance", 67, 3, 20);
 			EXC2->cs(cs);
 			EXC2->rwbar(rwbar);
 			EXC2->datain(databusin);

@@ -17,7 +17,7 @@ void exchanger::exchanging() {
 
 		startaddr = rand() % ADDR_SPACE;
 
-		for(i=0;i<=63;i++) {
+		for(i=0;i<=burst;i++) {
 			dval = rand() % WORD_LENGTH;
 			datain = (sc_lv<WORD_LENGTH>)dval;
 			addr = (sc_lv<ADDRESS>)(startaddr+i);
@@ -33,6 +33,7 @@ void exchanger::exchanging() {
 				
 		cout << "Device: "<< device <<" wrote in the memory starting at: " << startaddr << "\n";
 		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" completes its exchange.\n";
+		cout << "Device: " << burst << " number of transactions\n";
 		cout << "Device: "<< device <<" is done.\n";
 
 		permit->unlock();

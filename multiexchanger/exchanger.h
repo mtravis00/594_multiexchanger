@@ -3,6 +3,7 @@
 #define WORD_LENGTH 8 
 #define ADDRESS 10 
 #define ADDR_SPACE 1024
+#define BURST_SIZE 128
 
 SC_MODULE(exchanger)
 {
@@ -15,7 +16,7 @@ SC_MODULE(exchanger)
 
 	SC_HAS_PROCESS(exchanger);
 
-	exchanger::exchanger (sc_module_name NAME, int NUM, int TIM) : sc_module(NAME), device(NUM), delay(TIM)    
+	exchanger::exchanger (sc_module_name NAME, int NUM, int TIM, int BRST) : sc_module(NAME), device(NUM), delay(TIM) , burst(BRST)
 	{
 		cout << "Device: " << device << " has started.\n";
 		SC_THREAD(exchanging);
@@ -26,4 +27,5 @@ SC_MODULE(exchanger)
 	private:
 		int device;
 		int delay;
+		int burst;
 };
