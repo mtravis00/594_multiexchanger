@@ -5,14 +5,22 @@
 #define ADDR_SPACE 1024
 #define BURST_SIZE 128
 
+struct meminterface {
+	unsigned int addr;
+	int data;
+
+};
+
 SC_MODULE(exchanger)
 {
 	sc_out_rv <ADDRESS> addr;
 	sc_out_rv <WORD_LENGTH> datain;
 	sc_in_rv <WORD_LENGTH> dataout;
 	sc_out_resolved cs, rwbar;
-
+	sc_semaphore * permit_rd;
 	sc_mutex* permit;
+
+
 
 	SC_HAS_PROCESS(exchanger);
 

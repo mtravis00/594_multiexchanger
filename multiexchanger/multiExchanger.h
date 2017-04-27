@@ -12,6 +12,7 @@ SC_MODULE(multiExchanger)
 	
 	sc_semaphore* memrd;
 
+	meminterface* thismem;
 
 	exchanger* EXC1;
 	exchanger* EXC2;
@@ -23,6 +24,7 @@ SC_MODULE(multiExchanger)
 
 	SC_CTOR(multiExchanger)
 	{
+		thismem = new meminterface;
 		memrd = new sc_semaphore(3);
 
 		EXC1 = new exchanger("EXC1_Instance", 235, 3, 10); 
@@ -32,6 +34,7 @@ SC_MODULE(multiExchanger)
 			EXC1->dataout(databusout);
 			EXC1->addr(addrbus);
 			EXC1->permit=&memBusses;  // Pass mutex reference
+			EXC1->permit_rd = memrd;
 
 		EXC2 = new exchanger("EXC2_Instance", 67, 3, 20);
 			EXC2->cs(cs);
@@ -40,6 +43,7 @@ SC_MODULE(multiExchanger)
 			EXC2->dataout(databusout);
 			EXC2->addr(addrbus);
 			EXC2->permit=&memBusses;  // Pass mutex reference
+			EXC2->permit_rd = memrd;
 
 		MEM = new Memory("MEM_Instance");
 			(*MEM) (addrbus, databusin, databusout, cs, rwbar);
