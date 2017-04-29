@@ -9,8 +9,8 @@ void Memory::meminit() {
 
 void Memory::memwrite() {
 	int ad;
-	if((sc_logic)cs=='1') {
-		if((sc_logic)rwbar=='0') {
+	if(cs == SC_LOGIC_1) {
+		if(wr_en == SC_LOGIC_1) {
 			ad=(sc_uint<ADDRESS>)addr;
 			mem[ad] = datain;
 		}
@@ -19,8 +19,8 @@ void Memory::memwrite() {
 
 void Memory::memread() {
 	int ad;
-	if ((sc_logic)cs=='1') {
-		if((sc_logic)rwbar=='1') {
+	if (cs == SC_LOGIC_1) {
+		if(rd_en == SC_LOGIC_1) {
 			ad=sc_uint<ADDRESS>(addr);
 			dataout=sc_uint<ADDRESS>(mem[ad]);
 		}

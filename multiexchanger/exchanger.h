@@ -16,9 +16,9 @@ SC_MODULE(exchanger)
 	sc_out_rv <ADDRESS> addr;
 	sc_out_rv <WORD_LENGTH> datain;
 	sc_in_rv <WORD_LENGTH> dataout;
-	sc_out_resolved cs, rwbar;
+	sc_out_resolved cs, rd_en, wr_en;
 	sc_semaphore * permit_rd;
-	sc_mutex* permit;
+	sc_mutex* permit_wr;
 
 
 

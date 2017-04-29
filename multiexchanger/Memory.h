@@ -9,7 +9,7 @@ SC_MODULE (Memory) {
 	sc_in_rv <ADDRESS> addr;
 	sc_in_rv <WORD_LENGTH> datain;
 	sc_out_rv <WORD_LENGTH> dataout;
-	sc_in_resolved cs, rwbar;
+	sc_in_resolved cs, wr_en, rd_en;
 
 	sc_uint <WORD_LENGTH> mem [ADDR_SPACE];
 
@@ -21,9 +21,9 @@ SC_MODULE (Memory) {
 	SC_CTOR(Memory) {
 		SC_THREAD (meminit);
 		SC_METHOD (memread);
-			sensitive << addr << cs << rwbar;
+			sensitive << addr << cs << rd_en ;
 		SC_METHOD (memwrite);
-			sensitive << addr << datain << cs << rwbar;
+			sensitive << addr << datain << cs << wr_en;
 		SC_THREAD (memdump);
 	}
 };
