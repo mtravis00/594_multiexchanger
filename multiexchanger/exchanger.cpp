@@ -7,6 +7,8 @@ void exchanger::exchanging() {
 	srand(device*(unsigned)time(NULL));
 	unsigned int random_rd_wr;
 
+	meminterface* mem_if;
+
 	while (true) {
 
 		random_rd_wr = 1;// rand() % 2;  // 1 will be a write function and 0 will be a read
@@ -25,14 +27,25 @@ void exchanger::exchanging() {
 
 			startaddr = rand() % ADDR_SPACE;
 
-			for (i = 0; i <= burst; i++) {
+		/*	for (i = 0; i <= burst; i++) {
 				dval = rand() % WORD_LENGTH;
 				datain = (sc_lv<WORD_LENGTH>)dval;
 				addr = (sc_lv<ADDRESS>)(startaddr + i);
 				cs = (sc_logic)'1';
 				wr_en = (sc_logic)'1';
 				wait(delay, SC_NS);
+			}*/
+
+			for (i = 0; i <= burst; i++) {
+				dval = rand() % WORD_LENGTH;
+				mem_if->addr  = (sc_lv<ADDRESS>)(startaddr + i);
+				mem_if->datain = (sc_lv<WORD_LENGTH>)dval;
+				 
+				cs = (sc_logic)'1';
+				wr_en = (sc_logic)'1';
+				wait(delay, SC_NS);
 			}
+
 
 			cs = (sc_logic)'Z';
 			wr_en = (sc_logic)'Z';

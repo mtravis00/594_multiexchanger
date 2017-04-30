@@ -6,7 +6,7 @@ void Memory::meminit() {
 		mem[i] = i;
 	}
 }
-
+/*
 void Memory::memwrite() {
 	int ad;
 	if(cs == SC_LOGIC_1) {
@@ -26,7 +26,7 @@ void Memory::memread() {
 		}
 	}
 }
-
+*/
 void Memory::memdump() {
 	int i;
 	sc_lv<WORD_LENGTH> data;
@@ -36,4 +36,22 @@ void Memory::memdump() {
 		data=mem[i];
 		out << i <<":\t" << data << "\n";
 	}
+}
+
+void Memory::memwr() {
+	int ad;
+
+	ad = sc_uint<ADDRESS>(mem_interface->addr);
+	mem[ad]= mem_interface->datain;
+
+
+}
+
+void Memory::memrd() {
+	int ad;
+	
+	ad = sc_uint<ADDRESS>(mem_interface->addr);
+	mem_interface->dataout = sc_uint<ADDRESS>(mem[ad]);
+
+	
 }

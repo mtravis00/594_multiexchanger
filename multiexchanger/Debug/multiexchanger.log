@@ -1,10 +1,14 @@
-﻿  Memory.cpp
+﻿  exchanger.cpp
   Unknown compiler version - please run the configure tests and report the results
-c:\workspace\594_multiexchanger\multiexchanger\memory.cpp(14): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
-c:\workspace\594_multiexchanger\multiexchanger\memory.cpp(24): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+c:\workspace\594_multiexchanger\multiexchanger\exchanger.cpp(41): error C2679: binary '=': no operator found which takes a right-hand operand of type 'sc_dt::sc_lv<10>' (or there is no acceptable conversion)
+  c:\systemc-2.3.1a\src\sysc\communication\sc_signal_rv_ports.h(129): note: could be 'sc_core::sc_in_rv<10> &sc_core::sc_in_rv<10>::operator =(const sc_core::sc_in_rv<10> &)'
+  c:\workspace\594_multiexchanger\multiexchanger\exchanger.cpp(41): note: while trying to match the argument list '(sc_core::sc_in_rv<10>, sc_dt::sc_lv<10>)'
+c:\workspace\594_multiexchanger\multiexchanger\exchanger.cpp(42): error C2679: binary '=': no operator found which takes a right-hand operand of type 'sc_dt::sc_lv<8>' (or there is no acceptable conversion)
+  c:\systemc-2.3.1a\src\sysc\communication\sc_signal_rv_ports.h(129): note: could be 'sc_core::sc_in_rv<8> &sc_core::sc_in_rv<8>::operator =(const sc_core::sc_in_rv<8> &)'
+  c:\workspace\594_multiexchanger\multiexchanger\exchanger.cpp(42): note: while trying to match the argument list '(sc_core::sc_in_rv<8>, sc_dt::sc_lv<8>)'
   Generating Code...
   Compiling...
   multiExchanger_Main.cpp
   Unknown compiler version - please run the configure tests and report the results
+c:\workspace\594_multiexchanger\multiexchanger\multiexchanger.h(80): error C2064: term does not evaluate to a function taking 1 arguments
   Generating Code...
-  multiexchanger.vcxproj -> C:\workspace\594_multiexchanger\multiexchanger\Debug\multiexchanger.exe
