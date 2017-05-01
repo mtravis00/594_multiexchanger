@@ -1,1 +1,14 @@
-﻿  multiexchanger.vcxproj -> C:\workspace\594_multiexchanger_busversion\multiexchanger\Debug\multiexchanger.exe
+﻿  multiExchanger_Main.cpp
+  Unknown compiler version - please run the configure tests and report the results
+  Memory.cpp
+  Unknown compiler version - please run the configure tests and report the results
+c:\workspace\594_multiexchanger_busversion\multiexchanger\memory.cpp(14): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+c:\workspace\594_multiexchanger_busversion\multiexchanger\memory.cpp(18): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+c:\workspace\594_multiexchanger_busversion\multiexchanger\memory.cpp(22): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+c:\workspace\594_multiexchanger_busversion\multiexchanger\memory.cpp(26): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+c:\workspace\594_multiexchanger_busversion\multiexchanger\memory.cpp(36): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+c:\workspace\594_multiexchanger_busversion\multiexchanger\memory.cpp(40): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+c:\workspace\594_multiexchanger_busversion\multiexchanger\memory.cpp(44): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+c:\workspace\594_multiexchanger_busversion\multiexchanger\memory.cpp(48): warning C4244: '=': conversion from 'sc_dt::uint_type' to 'int', possible loss of data
+  Generating Code...
+  multiexchanger.vcxproj -> C:\workspace\594_multiexchanger_busversion\multiexchanger\Debug\multiexchanger.exe
