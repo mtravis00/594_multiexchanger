@@ -9,7 +9,7 @@ void exchanger::exchanging() {
 
 	while (true) {
 
-		random_rd_wr = 1;// rand() % 2;  // 1 will be a write function and 0 will be a read
+		random_rd_wr =  rand() % 2;  // 1 will be a write function and 0 will be a read
 		//cout << " random write or read value " << random_rd_wr << endl;
 		
 
