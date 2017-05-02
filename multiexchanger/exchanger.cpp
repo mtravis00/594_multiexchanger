@@ -31,11 +31,13 @@ void exchanger::exchanging() {
 				addr = (sc_lv<ADDRESS>)(startaddr + i);
 				cs = (sc_logic)'1';
 				wr_en = (sc_logic)'1';
+				rd_en = SC_LOGIC_0;
 				wait(delay, SC_NS);
 			}
 
-			cs = (sc_logic)'Z';
-			wr_en = (sc_logic)'Z';
+		//	cs = (sc_logic)'Z';
+			rd_en = (sc_logic)'0';
+			wr_en = (sc_logic)'0';
 			datain = (sc_lv<WORD_LENGTH>)"ZZZZZZZZ";
 			addr = (sc_lv<ADDRESS>)"ZZZZZZZZZZ";
 
@@ -63,11 +65,13 @@ void exchanger::exchanging() {
 				addr = (sc_lv<ADDRESS>)(startaddr + i);
 				cs = sc_logic_1;
 				rd_en = sc_logic_1;
+				wr_en = sc_logic_0;
 				wait(delay, SC_NS);
 			}
 			
-			cs = SC_LOGIC_Z;
-			rd_en = (sc_logic)'Z';
+		//	cs = SC_LOGIC_Z;
+			rd_en = sc_logic_0;
+			wr_en = sc_logic_0;
 			datain = (sc_lv<WORD_LENGTH>)"ZZZZZZZZ";
 			addr = (sc_lv<ADDRESS>)"ZZZZZZZZZZ";
 
