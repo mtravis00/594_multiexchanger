@@ -9,10 +9,9 @@ void exchanger::exchanging() {
 
 	while (true) {
 
+		//generate random write or read request
 		random_rd_wr =  rand() % 2;  // 1 will be a write function and 0 will be a read
-		//cout << " random write or read value " << random_rd_wr << endl;
 		
-
 		cout << "Device: " << device << " at " << sc_time_stamp() << " is idle ...\n";
 
 		wait(delay * 30, SC_NS);
@@ -39,6 +38,7 @@ void exchanger::exchanging() {
 			rd_en = (sc_logic)'0';
 			wr_en = (sc_logic)'0';
 			datain = (sc_lv<WORD_LENGTH>)"ZZZZZZZZ";
+			
 			addr = (sc_lv<ADDRESS>)"ZZZZZZZZZZ";
 
 			cout << "Device: " << device << ">>>>>> wrote in the memory starting at: " << startaddr << "\n";
@@ -46,7 +46,7 @@ void exchanger::exchanging() {
 			cout << "Device: " << burst << " number of transactions were completed\n";
 			cout << "Device: " << device << " is done.\n";
 			permit_wr->unlock();
-			wait(delay * 100, SC_NS);
+			wait(delay * 50, SC_NS);
 		}
 
 		else { // read process

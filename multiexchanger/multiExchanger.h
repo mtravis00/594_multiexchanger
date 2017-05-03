@@ -10,16 +10,18 @@ SC_MODULE(multiExchanger)
 	sc_signal_resolved cs1, cs2, cs3, cs4, rd_en1, rd_en2, rd_en3, rd_en4, wr_en1,
 						wr_en2, wr_en3, wr_en4;
 
-	sc_mutex memWR;
 	
-	sc_semaphore* memRD;
+	
+	sc_mutex memWR;  // mutex definition
+	
+	sc_semaphore* memRD; // semaphore definition
 
-	meminterface* thismem;
 
-	exchanger* EXC1;
-	exchanger* EXC2;
-	exchanger* EXC3;
-	exchanger* EXC4;
+
+	exchanger* P1;
+	exchanger* P2;
+	exchanger* P3;
+	exchanger* P4;
 
 	Memory* MEM;
 
@@ -29,49 +31,49 @@ SC_MODULE(multiExchanger)
 
 	SC_CTOR(multiExchanger)
 	{
-		thismem = new meminterface;
+	
 
-		memRD = new sc_semaphore(3);
+		memRD = new sc_semaphore(3);  // semaphore constructor
 
-		EXC1 = new exchanger("EXC1_Instance", 11, 5, 10); 
-			EXC1->cs(cs1);
-			EXC1->rd_en(rd_en1);
-			EXC1->wr_en(wr_en1);
-			EXC1->datain(databusin1);
-			EXC1->dataout(databusout1);
-			EXC1->addr(addrbus1);
-			EXC1->permit_wr=&memWR;		// Pass write mutex reference
-			EXC1->permit_rd = memRD;	// Pass read semaphore reference
+		P1 = new exchanger("P1_Instance", 1, 5, 10); 
+			P1->cs(cs1);
+			P1->rd_en(rd_en1);
+			P1->wr_en(wr_en1);
+			P1->datain(databusin1);
+			P1->dataout(databusout1);
+			P1->addr(addrbus1);
+			P1->permit_wr=&memWR;		// Pass write mutex reference
+			P1->permit_rd = memRD;	// Pass read semaphore 
 
-		EXC2 = new exchanger("EXC2_Instance", 22, 5, 20);
-			EXC2->cs(cs2);
-			EXC2->rd_en(rd_en2);
-			EXC2->wr_en(wr_en2);
-			EXC2->datain(databusin2);
-			EXC2->dataout(databusout2);
-			EXC2->addr(addrbus2);
-			EXC2->permit_wr=&memWR;  // Pass mutex reference
-			EXC2->permit_rd = memRD;
+		P2 = new exchanger("P2_Instance", 2, 5, 20);
+			P2->cs(cs2);
+			P2->rd_en(rd_en2);
+			P2->wr_en(wr_en2);
+			P2->datain(databusin2);
+			P2->dataout(databusout2);
+			P2->addr(addrbus2);
+			P2->permit_wr=&memWR;  // Pass mutex reference
+			P2->permit_rd = memRD;// Pass read semaphore 
 
-		EXC3 = new exchanger("EXC3_Instance", 33, 5, 30);
-			EXC3->cs(cs3);
-			EXC3->rd_en(rd_en3);
-			EXC3->wr_en(wr_en3);
-			EXC3->datain(databusin3);
-			EXC3->dataout(databusout3);
-			EXC3->addr(addrbus3);
-			EXC3->permit_wr = &memWR;  // Pass mutex reference
-			EXC3->permit_rd = memRD;
+		P3 = new exchanger("P3_Instance", 3, 5, 30);
+			P3->cs(cs3);
+			P3->rd_en(rd_en3);
+			P3->wr_en(wr_en3);
+			P3->datain(databusin3);
+			P3->dataout(databusout3);
+			P3->addr(addrbus3);
+			P3->permit_wr = &memWR;  // Pass mutex reference
+			P3->permit_rd = memRD;// Pass read semaphore 
 
-		EXC4 = new exchanger("EXC4_Instance", 44, 5, 40);
-			EXC4->cs(cs4);
-			EXC4->rd_en(rd_en4);
-			EXC4->wr_en(wr_en4);
-			EXC4->datain(databusin4);
-			EXC4->dataout(databusout4);
-			EXC4->addr(addrbus4);
-			EXC4->permit_wr = &memWR;  // Pass mutex reference
-			EXC4->permit_rd = memRD;
+		P4 = new exchanger("P4_Instance", 4, 5, 40);
+			P4->cs(cs4);
+			P4->rd_en(rd_en4);
+			P4->wr_en(wr_en4);
+			P4->datain(databusin4);
+			P4->dataout(databusout4);
+			P4->addr(addrbus4);
+			P4->permit_wr = &memWR;  // Pass mutex reference
+			P4->permit_rd = memRD;// Pass read semaphore 
 
 		
 
